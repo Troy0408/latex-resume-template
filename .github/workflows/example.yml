@@ -11,7 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Compile the default example
-        run: latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=resume resume-zh_CN.tex
+        run: |
+          fmtutil-sys --byfmt xelatex
+          latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=resume resume-zh_CN.tex
       - name: Install PDF inspection tools
         run: |
           apt-get update -qq
