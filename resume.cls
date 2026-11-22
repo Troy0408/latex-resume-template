@@ -7,7 +7,7 @@
 \RequirePackage{titlesec}
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
-\RequirePackage{tabularray}
+
 \RequirePackage{fontawesome6}
 \RequirePackage{hyperref}
 \RequirePackage{bookmark}
@@ -15,33 +15,34 @@
 \hypersetup{hidelinks}
 \input{stys/fonts.tex}
 
+\linespread{1.12}
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 \setlist{noitemsep}
-\setlist[itemize]{topsep=0.25em,leftmargin=1.25pc}
+\setlist[itemize]{topsep=0.3em,itemsep=0.24em,leftmargin=1.25pc,label=\textcolor{fgcolor}{\textbullet}}
 
 % 上游 default：大号蓝色标题，下方一条同色通栏细线。
 \titleformat{\section}
-  {\Large\bfseries\raggedright\color{fgcolor}}{}{0em}{}
+  {\fontsize{13.5pt}{16pt}\selectfont\bfseries\raggedright\color{fgcolor}}{}{0em}{}
   [\titleline{\color{fgcolor}\titlerule}]
-\titlespacing*{\section}{0cm}{*1.8}{*1.8}
+\titlespacing*{\section}{0cm}{*2.6}{*1.25}
 \titleformat{\subsection}{\large\raggedright}{}{0em}{}
 \titlespacing*{\subsection}{0cm}{*1.8}{*0.6}
 
-\newenvironment{skilllist}{\begin{itemize}[itemsep=0.35em]}{\end{itemize}}
+\newenvironment{skilllist}{\begin{itemize}[itemsep=0.25em]}{\end{itemize}}
 \newcommand{\icon}[1]{\makebox[1em][c]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}\hspace{0.3em}}
 \newcommand{\sectionTitle}[2]{\section[#1]{\icon{#2} #1}}
-\newcommand{\datedsubsection}[2]{\subsection[#1]{#1 \hfill \mbox{#2}}}
-\newcommand{\datedline}[2]{\par #1 \hfill \mbox{#2}\par}
+\newcommand{\datedsubsection}[2]{\subsection[#1]{#1 \hfill \mbox{\small\textcolor{secondary}{#2}}}}
+\newcommand{\datedline}[2]{\par #1 \hfill \mbox{\small\textcolor{secondary}{#2}}\par}
 \newcommand{\texthl}[1]{\textcolor{fgcolor}{\textbf{#1}}}
 \newcommand{\normalline}[1]{\par #1\par}
-\newcommand{\role}[2]{\par\textit{#1}\quad #2\par\vspace{0.6ex}}
+\newcommand{\role}[2]{\par{\color{secondary}\textit{#1}\quad #2}\par\vspace{0.6ex}}
 
-\newcommand{\basicInfoItem}[2]{{\large\icon{#1}\ #2}}
+\newcommand{\basicInfoItem}[2]{{\normalsize\color{secondary}\icon{#1}\ #2}}
 \newcommand{\phone}[1]{\basicInfoItem{\faPhone}{#1}}
 \newcommand{\email}[1]{\basicInfoItem{\faEnvelope}{\href{mailto:#1}{#1}}}
-\newcommand{\github}[1]{\basicInfoItem{\faLink}{\href{https://github.com/#1}{github.com/#1}}}
-\newcommand{\dotSep}{\enspace\textbf{\textperiodcentered}\enspace}
+\newcommand{\github}[1]{\basicInfoItem{\faLink}{\href{https://github.com/#1}{GitHub: #1}}}
+\newcommand{\contactsep}{\hspace{0.65em}}
 \newif\ifshowphoto
 \newlength{\photowidth}
 \newlength{\photoheight}

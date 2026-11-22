@@ -1,40 +1,46 @@
-% 复制或移动整个 \sectionTitle 区块即可增删、排序模块。
+% 本页为虚构示例。将院校、项目、分工、日期和验证结果换成自己的经历。
 \sectionTitle{教育背景}{\faGraduationCap}
-\datedsubsection{\texthl{某某大学} / \textit{微电子科学与工程} / \textit{学士}}
-  {20XX.09 -- 20XX.06}
-\normalline{专业方向：数字集成电路 \quad 绩点：X.XX / X.XX}
-\normalline{相关课程：数字逻辑、计算机组成原理、集成电路设计基础}
-
-\sectionTitle{专业技能（示例）}{\faGears}
-% 示例词条。仅保留能结合实际工作或作品说明的技能。
-\begin{skilllist}
-  \item \textbf{硬件描述与 RTL 设计}\quad Verilog / SystemVerilog、组合与时序逻辑、有限状态机
-  \item \textbf{功能验证}\quad 测试平台、边界用例、断言与回归测试
-  \item \textbf{计算机体系结构}\quad 指令集、处理器数据通路、流水线与存储层次
-  \item \textbf{软件与开发环境}\quad C/C++、Linux 命令行、Git 版本管理
-  \item \textbf{仿真与调试}\quad Verilator、GTKWave、仿真日志与波形分析
-\end{skilllist}
+\datedsubsection{\textbf{示例大学} / \textit{微电子科学与工程} / \textit{学士}}{2022.09 -- 2026.06}
+\normalline{专业方向：数字集成电路设计}
+\normalline{相关课程：数字逻辑、计算机组成原理、集成电路设计基础、数字信号处理}
 
 \sectionTitle{项目经历}{\faUsers}
-% 以下为虚构的排版示例。投递前替换标题、日期、分工和交付物。
-\datedsubsection{\textbf{基于 RISC-V 的处理器设计}}{20XX.03 -- 20XX.06}
-\role{RISC-V / Verilog / RTL}{虚构示例}
-\normalline{项目简介：以教学处理器为例，说明一条指令从取指到写回的数据流。}
+% 先交代设计目标与个人分工，再写设计决策、验证方法和可核对的产物。
+\datedsubsection{\textbf{单周期 RISC-V 处理器设计}}{2025.09 -- 2025.12}
+\role{Verilog / RV32I / Verilator}{数据通路设计与指令验证}
+\normalline{在教学处理器上实现算术、访存与条件分支指令，负责译码、写回选择和指令级自测。}
 \begin{itemize}
-  \item \textbf{设计工作}\quad 填写本人负责的模块，结合一条指令说明接口和控制信号的设计选择。
-  \item \textbf{验证方法}\quad 选取一个典型用例，说明如何对照预期行为检查寄存器或存储器状态。
-  \item \textbf{项目成果}\quad 填写可展示的交付物，如数据通路图、设计说明或验证记录。
+  \item \textbf{数据通路}\quad 复用加法器计算访存地址，通过写回选择信号区分算术结果与加载数据；绘制控制信号表，逐项标注各类指令的寄存器读写行为。
+  \item \textbf{指令验证}\quad 编写短汇编程序，对照预期执行轨迹检查 PC、写回地址与数据，分别覆盖分支跳转和顺序执行路径。
+  \item \textbf{故障定位}\quad 用向后跳转用例复现分支目标地址错误，通过波形定位立即数符号扩展问题，修正后将该用例加入回归。
 \end{itemize}
 
-\datedsubsection{\textbf{数字逻辑设计与验证}}{20XX.09 -- 20XX.12}
-\role{SystemVerilog / FIFO / GTKWave}{虚构示例}
-\normalline{项目简介：以同步 FIFO 为例，描述读写请求、队列状态与空满标志的关系。}
+\datedsubsection{\textbf{同步 FIFO 设计与边界验证}}{2025.03 -- 2025.06}
+\role{SystemVerilog / GTKWave}{RTL 实现与自检平台}
 \begin{itemize}
-  \item \textbf{验证工作}\quad 列出复位、连续读写或边界条件，说明激励与预期输出的对应关系。
-  \item \textbf{调试与成果}\quad 选取一段关键波形，标出检查点，填写实际观察和验证结论。
+  \item \textbf{读写控制}\quad 根据有效读写操作更新计数器和空满标志；规定满时拒绝写入、空时拒绝读出，并在接口时序图中标明单周期响应。
+  \item \textbf{结果比对}\quad 用参考队列记录已接受的写入数据，逐次比对读出顺序；保留空读、满写和指针回绕的回归用例与波形。
 \end{itemize}
 
-% 可选模块：按需取消对应行的注释，填写真实内容。
+\sectionTitle{专业技能}{\faGears}
+\begin{skilllist}
+  \item \textbf{RTL 设计}\quad 使用 Verilog / SystemVerilog 实现组合逻辑、同步状态机与寄存器数据通路。
+  \item \textbf{仿真验证}\quad 使用 Verilator 运行指令测试，通过 GTKWave 检查时钟边沿与控制信号。
+  \item \textbf{开发环境}\quad 在 Linux 下用 Make 组织仿真任务，用 Git 记录 RTL 与测试用例的版本。
+\end{skilllist}
+
+% 可选模块：按目标岗位决定是否保留课程设计；也可替换为实习、科研或作品。
+\sectionTitle{课程设计}{\faFlask}
+\datedsubsection{\textbf{含噪信号的 FIR 低通滤波}}{2024.09 -- 2024.12}
+\role{MATLAB / FIR}{滤波器设计与频域分析}
+\begin{itemize}
+  \item 根据测试信号和干扰频率设置通带与阻带，比较不同阶数下的过渡带宽度与群时延。
+  \item 将输入、输出频谱置于同一坐标尺度，整理参数表和绘图脚本，供同组同学复现实验。
+\end{itemize}
+
+% \sectionTitle{技术作品}{\faFolderOpen}
+% \datedsubsection{\textbf{作品名称}}{更新年月}
+% \normalline{说明读者能在作品中查到什么，并附上公开链接或文档路径。}
 % \sectionTitle{实习经历}{\faBuilding}
 % \datedsubsection{\textbf{单位名称} / 岗位}{起始年月 -- 结束年月}
 % \normalline{职责与交付物}

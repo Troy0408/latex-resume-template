@@ -1,0 +1,30 @@
+name: Build and check the example
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+
+jobs:
+  example:
+    runs-on: ubuntu-24.04
+    # TeX Live 2025 historic release
+    container: texlive/texlive@sha256:dbd65d778eb83de9b45fb0a8deb3afe44cbbaba2272e4e1e644e94dda52c7109
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile the default example
+        run: latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=resume resume-zh_CN.tex
+      - name: Install PDF inspection tools
+        run: |
+          apt-get update -qq
+          apt-get install -y --no-install-recommends poppler-utils poppler-data
+      - name: Check the example page count and text
+        run: |
+          export LC_ALL=C
+          pdfinfo build/resume.pdf | grep -Eq '^Pages:[[:space:]]+1$'
+          pdftotext -layout -enc UTF-8 build/resume.pdf build/example.txt
+          grep -Fq '教育背景' build/example.txt
+          grep -Fq '同步 FIFO' build/example.txt
+          grep -Fq 'lin.zhiyuan@example.com' build/example.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: resume-example
+          path: build/resume.pdf

@@ -1,25 +1,29 @@
-% 保留对称的侧栏，让姓名始终位于纸面中线；右侧照片独占固定区域。
-\newcommand{\photoimage}[1]{%
-  \includegraphics[width=\photowidth,height=\photoheight,keepaspectratio]{#1}}
-\newcommand{\photoplaceholder}{%
-  \begingroup
-  \setlength{\fboxsep}{0pt}%
-  \color{black!35}\fbox{\parbox[c][\dimexpr\photoheight-2\fboxrule][c]
-    {\dimexpr\photowidth-2\fboxrule}{\centering\small\BeginAccSupp{ActualText={}}证件照\EndAccSupp{}}}%
-  \endgroup}
-\newcommand{\resumephoto}{%
-  \parbox[c][\photoheight][c]{\photowidth}{\centering
-    \IfFileExists{\photopath.jpg}{\photoimage{\photopath.jpg}}{%
-      \IfFileExists{\photopath.png}{\photoimage{\photopath.png}}{\photoplaceholder}}}}
+% 每个联系方式整体换行，仅在两个已填写的项目之间插入间距。
+\newcommand{\contactfield}[2]{%
+  \ifx#1\empty\else
+    \nextcontactsep\mbox{#2}\let\nextcontactsep\contactsep
+  \fi}
+\newcommand{\resumeidentity}{%
+  \raggedright
+  {\Huge\bfseries\color{fgcolor}\resumename\par}%
+  \def\nextcontactsep{\vspace{0.4em}\noindent}
+  \contactfield\resumephone{\phone{\resumephone}}%
+  \contactfield\resumeemail{\email{\resumeemail}}%
+  \contactfield\resumeaddress{\basicInfoItem{\faLocationDot}{\resumeaddress}}%
+  \contactfield\githubuser{\github{\githubuser}}\par}
 
-\begin{tblr}{
-  width=\linewidth,
-  colspec={Q[l,\ifshowphoto\photowidth\else 0pt\fi]X[c,m]Q[r,\ifshowphoto\photowidth\else 0pt\fi]},
-  columns={colsep=0pt}, rows={rowsep=2pt},
-  row{1}={font=\Huge\bfseries}
-}
-  & \resumename & \SetCell[r=4]{m}\ifshowphoto\resumephoto\fi \\
-  & \resumedirection & \\
-  & \phone{\resumephone}\dotSep\email{\resumeemail} & \\
-  & \github{\githubuser} &
-\end{tblr}\par
+\let\resumepicture\empty
+\ifshowphoto
+  \IfFileExists{\photopath.jpg}{\def\resumepicture{\photopath.jpg}}{%
+    \IfFileExists{\photopath.png}{\def\resumepicture{\photopath.png}}{}}
+\fi
+\ifx\resumepicture\empty
+  {\resumeidentity}
+\else
+  \noindent\begin{minipage}[c]{\dimexpr\linewidth-\photowidth-1em\relax}
+    \resumeidentity
+  \end{minipage}\hfill
+  \begin{minipage}[c]{\photowidth}
+    \centering\includegraphics[width=\linewidth,height=\photoheight,keepaspectratio]{\resumepicture}
+  \end{minipage}\par
+\fi
