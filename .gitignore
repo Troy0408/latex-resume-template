@@ -1,0 +1,13 @@
+/build/
+*.aux
+*.log
+*.out
+*.toc
+*.xdv
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+/resume.pdf
+/resume-zh_CN.pdf
+/images/photo.jpg
+/images/photo.png

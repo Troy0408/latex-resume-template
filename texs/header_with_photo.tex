@@ -1,0 +1,25 @@
+% 保留对称的侧栏，让姓名始终位于纸面中线；右侧照片独占固定区域。
+\newcommand{\photoimage}[1]{%
+  \includegraphics[width=\photowidth,height=\photoheight,keepaspectratio]{#1}}
+\newcommand{\photoplaceholder}{%
+  \begingroup
+  \setlength{\fboxsep}{0pt}%
+  \color{black!35}\fbox{\parbox[c][\dimexpr\photoheight-2\fboxrule][c]
+    {\dimexpr\photowidth-2\fboxrule}{\centering\small\BeginAccSupp{ActualText={}}证件照\EndAccSupp{}}}%
+  \endgroup}
+\newcommand{\resumephoto}{%
+  \parbox[c][\photoheight][c]{\photowidth}{\centering
+    \IfFileExists{\photopath.jpg}{\photoimage{\photopath.jpg}}{%
+      \IfFileExists{\photopath.png}{\photoimage{\photopath.png}}{\photoplaceholder}}}}
+
+\begin{tblr}{
+  width=\linewidth,
+  colspec={Q[l,\ifshowphoto\photowidth\else 0pt\fi]X[c,m]Q[r,\ifshowphoto\photowidth\else 0pt\fi]},
+  columns={colsep=0pt}, rows={rowsep=2pt},
+  row{1}={font=\Huge\bfseries}
+}
+  & \resumename & \SetCell[r=4]{m}\ifshowphoto\resumephoto\fi \\
+  & \resumedirection & \\
+  & \phone{\resumephone}\dotSep\email{\resumeemail} & \\
+  & \github{\githubuser} &
+\end{tblr}\par

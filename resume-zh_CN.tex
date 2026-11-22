@@ -1,0 +1,23 @@
+% !TeX program = xelatex
+\documentclass{resume}
+
+% 个人信息
+\newcommand{\resumename}{你的姓名}
+\newcommand{\resumedirection}{数字 IC 设计 / 计算机体系结构}
+\newcommand{\resumephone}{1XX-XXXX-XXXX}
+\newcommand{\resumeemail}{name@example.com}
+\newcommand{\githubuser}{username}
+
+% 外观与照片。照片路径不含扩展名，优先读取 .jpg，其次 .png。
+\geometry{a4paper,left=0.80in,right=0.80in,top=0.85in,bottom=0.55in,nohead}
+\definecolor{fgcolor}{HTML}{01408F}
+\showphototrue                      % 改为 \showphotofalse 即可隐藏照片
+\newcommand{\photopath}{images/photo}
+\setlength{\photowidth}{2.25cm}
+\setlength{\photoheight}{3cm}
+
+\hypersetup{pdftitle={\resumename 的中文简历},pdfauthor={\resumename}}
+\begin{document}
+\input{texs/header_with_photo}
+\input{texs/sections}
+\end{document}

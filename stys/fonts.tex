@@ -1,0 +1,9 @@
+% 使用 TeX 发行版中的字体文件；保留上游的西文、宋体、黑体与楷体层级。
+\RequirePackage{fontspec}
+\RequirePackage{xeCJK}
+\XeTeXgenerateactualtext=1
+\setmainfont{texgyretermes}[
+  Extension=.otf, UprightFont=*-regular, BoldFont=*-bold,
+  ItalicFont=*-italic, BoldItalicFont=*-bolditalic]
+\setCJKmainfont{FandolSong-Regular.otf}[
+  Script=Default, BoldFont=FandolHei-Regular.otf, ItalicFont=FandolKai-Regular.otf]
