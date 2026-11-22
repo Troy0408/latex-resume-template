@@ -1,4 +1,9 @@
 % 每个联系方式整体换行，仅在两个已填写的项目之间插入间距。
+\providecommand{\resumephone}{}
+\providecommand{\resumeemail}{}
+\providecommand{\resumeaddress}{}
+\providecommand{\githubuser}{}
+\providecommand{\resumewebsite}{}
 \newcommand{\contactfield}[2]{%
   \ifx#1\empty\else
     \nextcontactsep\mbox{#2}\let\nextcontactsep\contactsep
@@ -10,7 +15,8 @@
   \contactfield\resumephone{\phone{\resumephone}}%
   \contactfield\resumeemail{\email{\resumeemail}}%
   \contactfield\resumeaddress{\basicInfoItem{\faLocationDot}{\resumeaddress}}%
-  \contactfield\githubuser{\github{\githubuser}}\par}
+  \contactfield\githubuser{\github{\githubuser}}%
+  \contactfield\resumewebsite{\website{\resumewebsite}}\par}
 
 \let\resumepicture\empty
 \ifshowphoto

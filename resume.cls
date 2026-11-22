@@ -41,7 +41,8 @@
 \newcommand{\basicInfoItem}[2]{{\normalsize\color{secondary}\icon{#1}\ #2}}
 \newcommand{\phone}[1]{\basicInfoItem{\faPhone}{#1}}
 \newcommand{\email}[1]{\basicInfoItem{\faEnvelope}{\href{mailto:#1}{#1}}}
-\newcommand{\github}[1]{\basicInfoItem{\faLink}{\href{https://github.com/#1}{GitHub: #1}}}
+\newcommand{\github}[1]{\basicInfoItem{\faGithub}{\href{https://github.com/#1}{github.com/#1}}}
+\newcommand{\website}[2][]{\basicInfoItem{\faGlobe}{\href{#2}{\if\relax\detokenize{#1}\relax#2\else#1\fi}}}
 \newcommand{\contactsep}{\hspace{0.65em}}
 \newif\ifshowphoto
 \newlength{\photowidth}

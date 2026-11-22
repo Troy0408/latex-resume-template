@@ -1,5 +1,13 @@
 name: Build and check the example
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -14,6 +22,30 @@ jobs:
         run: |
           fmtutil-sys --byfmt xelatex
           latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=resume resume-zh_CN.tex
+      - name: Smoke-test photo, GitHub, and website header fields
+        run: |
+          mkdir -p build
+          cat <<'EOF' > build/smoke_photo.tex
+          \documentclass{resume}
+          \newcommand{\resumename}{林知远}
+          \newcommand{\resumeaddress}{上海}
+          \newcommand{\resumephone}{1XX-XXXX-XXXX}
+          \newcommand{\resumeemail}{lin.zhiyuan@example.com}
+          \newcommand{\githubuser}{Troy0408}
+          \newcommand{\resumewebsite}{https://example.com}
+          \geometry{a4paper,left=0.80in,right=0.80in,top=0.62in,bottom=0.55in,nohead}
+          \definecolor{fgcolor}{HTML}{2B579A}
+          \definecolor{secondary}{HTML}{595959}
+          \showphototrue
+          \newcommand{\photopath}{images/preview}
+          \setlength{\photowidth}{2.25cm}
+          \setlength{\photoheight}{3cm}
+          \begin{document}
+          \input{texs/header_with_photo}
+          \input{texs/sections}
+          \end{document}
+          EOF
+          latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=smoke_photo build/smoke_photo.tex
       - name: Install PDF inspection tools
         run: |
           apt-get update -qq
@@ -26,6 +58,10 @@ jobs:
           grep -Fq '教育背景' build/example.txt
           grep -Fq '同步 FIFO' build/example.txt
           grep -Fq 'lin.zhiyuan@example.com' build/example.txt
+          pdfinfo build/smoke_photo.pdf | grep -Eq '^Pages:[[:space:]]+1$'
+          pdftotext -layout -enc UTF-8 build/smoke_photo.pdf build/smoke_photo.txt
+          grep -Fq 'github.com/Troy0408' build/smoke_photo.txt
+          grep -Fq 'https://example.com' build/smoke_photo.txt
       - uses: actions/upload-artifact@v4
         with:
           name: resume-example
