@@ -112,7 +112,7 @@ latex-resume-template/
 
 - **配色**：在 `resume-zh_CN.tex` 修改 `\definecolor{fgcolor}{HTML}{2B579A}` 调整姓名、模块标题、分隔细线与列表圆点颜色；修改 `secondary` 调整联系方式、日期与技术关键词的深灰色。
 - **页边距**：在 `resume-zh_CN.tex` 修改 `\geometry{a4paper,...}`。
-- **字号与间距**：正文为 11pt，段内行距倍率为 1.12。`resume.cls` 中的 `\titlespacing*` 控制板块标题前后留白（9pt / 4pt）及条目标题前后留白（6pt / 2pt）。`itemize` 上下各留 2pt，分工说明下留 1pt；修改这些值即可单独调整不同类型内容之间的距离。
+- **字号与间距**可在 `resume.cls` 调整。正文为 10pt，段内基线距约 14pt。板块标题为 13pt，条目标题为 11.5pt，两级标题的前后留白分别为 8pt / 5pt 和 7pt / 3pt。普通列表和技能列表共用相同的间距，列表上下各留 3pt，相邻要点之间加 2pt。
 - **自定义网站文案**：默认页眉调用 `\website{\resumewebsite}` 直接显示网址；如需自定义显示文本，也可手动调用 `\website[个人博客]{https://example.com}`。
 
 ## 常见问题
