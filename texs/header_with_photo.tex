@@ -1,31 +1,29 @@
 % 每个联系方式整体换行，仅在两个已填写的项目之间插入间距。
-\providecommand{\resumetarget}{}
 \providecommand{\resumephone}{}
 \providecommand{\resumeemail}{}
 \providecommand{\resumeaddress}{}
 \providecommand{\githubuser}{}
 \providecommand{\resumewebsite}{}
+\providecommand{\resumewebsitetext}{}
 \newcommand{\contactfield}[2]{%
-  \ifx#1\empty\else
+  \ExpandArgs{o}\IfBlankF{#1}{%
     \nextcontactsep\mbox{#2}\let\nextcontactsep\contactsep
-  \fi}
+  }}
 \newcommand{\resumeidentity}{%
   \raggedright
   {\fontsize{23pt}{26pt}\selectfont\bfseries\color{fgcolor}\resumename\par}%
-  \ifx\resumetarget\empty\else
-    \vspace{2pt}{\color{secondary}求职意向\enspace ·\enspace \resumetarget\par}%
-  \fi
-  \def\nextcontactsep{\vspace{3pt}\noindent}
+  \def\nextcontactsep{\vspace{6pt}\noindent}%
   \contactfield\resumephone{\phone{\resumephone}}%
   \contactfield\resumeemail{\email{\resumeemail}}%
   \contactfield\resumeaddress{\basicInfoItem{\faLocationDot}{\resumeaddress}}%
   \contactfield\githubuser{\github{\githubuser}}%
-  \contactfield\resumewebsite{\website{\resumewebsite}}\par}
+  \contactfield\resumewebsite{\website[\resumewebsitetext]{\resumewebsite}}\par}
 
 \let\resumepicture\empty
 \ifshowphoto
   \IfFileExists{\photopath.jpg}{\def\resumepicture{\photopath.jpg}}{%
-    \IfFileExists{\photopath.png}{\def\resumepicture{\photopath.png}}{}}
+    \IfFileExists{\photopath.jpeg}{\def\resumepicture{\photopath.jpeg}}{%
+      \IfFileExists{\photopath.png}{\def\resumepicture{\photopath.png}}{}}}
 \fi
 \ifx\resumepicture\empty
   {\resumeidentity}
@@ -34,6 +32,6 @@
     \resumeidentity
   \end{minipage}\hfill
   \begin{minipage}[c]{\photowidth}
-    \centering\includegraphics[width=\linewidth,height=\photoheight,keepaspectratio]{\resumepicture}
+    \raggedleft\includegraphics[width=\linewidth,height=\photoheight,keepaspectratio]{\resumepicture}
   \end{minipage}\par
 \fi

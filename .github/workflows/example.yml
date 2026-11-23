@@ -29,11 +29,12 @@ jobs:
           cat <<'EOF' > build/smoke_photo.tex
           \documentclass{resume}
           \newcommand{\resumename}{林知远}
-          \newcommand{\resumeaddress}{上海}
+          \newcommand{\resumeaddress}{广州}
           \newcommand{\resumephone}{1XX-XXXX-XXXX}
           \newcommand{\resumeemail}{lin.zhiyuan@example.com}
           \newcommand{\githubuser}{Troy0408}
           \newcommand{\resumewebsite}{https://example.com}
+          \newcommand{\resumewebsitetext}{   }
           \geometry{a4paper,left=0.80in,right=0.80in,top=0.62in,bottom=0.55in,nohead}
           \definecolor{fgcolor}{HTML}{2B579A}
           \definecolor{secondary}{HTML}{595959}
@@ -46,8 +47,28 @@ jobs:
           \input{texs/sections}
           \end{document}
           EOF
+          cat <<'EOF' > build/smoke_custom.tex
+          \documentclass{resume}
+          \newcommand{\resumename}{林知远}
+          \newcommand{\resumeaddress}{广州}
+          \newcommand{\resumephone}{   }
+          \newcommand{\resumeemail}{lin.zhiyuan@example.com}
+          \newcommand{\githubuser}{Troy\_0408}
+          \newcommand{\resumewebsite}{https://example.com}
+          \newcommand{\resumewebsitetext}{个人主页}
+          \geometry{a4paper,left=0.80in,right=0.80in,top=0.62in,bottom=0.55in,nohead}
+          \definecolor{fgcolor}{HTML}{2B579A}
+          \definecolor{secondary}{HTML}{595959}
+          \showphotofalse
+          \begin{document}
+          \input{texs/header_with_photo}
+          \input{texs/sections}
+          \end{document}
+          EOF
           cp images/photo-placeholder.png images/photo.png
           latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=smoke_photo build/smoke_photo.tex
+          latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=smoke_custom build/smoke_custom.tex
+          rm -f images/photo.png
       - name: Install PDF inspection tools
         run: |
           apt-get update -qq
@@ -56,22 +77,28 @@ jobs:
         run: |
           export LC_ALL=C
           pdfinfo build/resume.pdf | grep -Eq '^Pages:[[:space:]]+1$'
-          pdftotext -layout -enc UTF-8 build/resume.pdf build/example.txt
-          grep -Fq '教育背景' build/example.txt
-          grep -Fq '同步 FIFO' build/example.txt
-          grep -Fq '实习经历' build/example.txt
-          grep -Fq '荣誉奖项' build/example.txt
-          grep -Fq 'lin.zhiyuan@example.com' build/example.txt
           pdfinfo build/preview.pdf | grep -Eq '^Pages:[[:space:]]+1$'
-          for job in resume preview smoke_photo; do
+          pdfinfo build/smoke_photo.pdf | grep -Eq '^Pages:[[:space:]]+1$'
+          pdfinfo build/smoke_custom.pdf | grep -Eq '^Pages:[[:space:]]+1$'
+          pdftotext -layout -enc UTF-8 build/resume.pdf build/example.txt
+          pdftotext -layout -enc UTF-8 build/preview.pdf build/preview.txt
+          for kw in '广东工业大学' '集成电路学院' '教育背景' '实习经历' '同步 FIFO' '荣誉奖项' '全国大学生集成电路创新创业大赛' 'lin.zhiyuan@example.com'; do
+            grep -Fq "$kw" build/example.txt
+          done
+          ! grep -Fq '求职意向' build/example.txt
+          ! grep -Fq '求职意向' build/preview.txt
+          for job in resume preview smoke_photo smoke_custom; do
+            ! grep -Eq 'Overfull \\hbox|Missing character' "build/$job.log"
             pdfimages -list "build/$job.pdf" > "build/$job-images.txt"
             count=$(awk '$3 == "image" { n++ } END { print n+0 }' "build/$job-images.txt")
-            if [ "$job" = resume ]; then test "$count" -eq 0; else test "$count" -eq 1; fi
+            if [ "$job" = smoke_photo ] || [ "$job" = preview ]; then test "$count" -eq 1; else test "$count" -eq 0; fi
           done
-          pdfinfo build/smoke_photo.pdf | grep -Eq '^Pages:[[:space:]]+1$'
           pdftotext -layout -enc UTF-8 build/smoke_photo.pdf build/smoke_photo.txt
           grep -Fq 'github.com/Troy0408' build/smoke_photo.txt
           grep -Fq 'https://example.com' build/smoke_photo.txt
+          pdftotext -layout -enc UTF-8 build/smoke_custom.pdf build/smoke_custom.txt
+          grep -Fq 'github.com/Troy_0408' build/smoke_custom.txt
+          grep -Fq '个人主页' build/smoke_custom.txt
       - uses: actions/upload-artifact@v4
         with:
           name: resume-example

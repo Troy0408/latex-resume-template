@@ -1,16 +1,19 @@
 % !TeX program = xelatex
 \documentclass{resume}
 
-% 虚构示例。联系方式可单独留空或删除；GitHub 填用户名，个人主页填完整链接。
+% 广东工业大学集成电路学院虚构学生示例。
+% 个人基本信息默认不含「求职意向」，便于同时用于校招、实习以及实验室/学生部门面试。
+% 联系方式可单独留空或删除；GitHub 填用户名，个人主页填完整链接。
 \newcommand{\resumename}{林知远}
-\newcommand{\resumetarget}{数字 IC 设计与验证工程师} % 求职意向，可留空
-\newcommand{\resumeaddress}{上海}
+\newcommand{\resumeaddress}{广州}
 \newcommand{\resumephone}{1XX-XXXX-XXXX}
 \newcommand{\resumeemail}{lin.zhiyuan@example.com}
 \newcommand{\githubuser}{}
 \newcommand{\resumewebsite}{}
+% 如填写了个人主页且想自定义显示文字，可取消下面这行的注释：
+% \newcommand{\resumewebsitetext}{个人主页}
 
-% 外观与照片。照片路径不含扩展名，优先读取 .jpg，其次 .png。
+% 外观与照片。照片路径不含扩展名，优先读取 .jpg，其次 .jpeg、.png。
 \geometry{a4paper,left=0.80in,right=0.80in,top=0.62in,bottom=0.55in,nohead}
 \definecolor{fgcolor}{HTML}{2B579A}
 \definecolor{secondary}{HTML}{595959}
@@ -19,7 +22,7 @@
 \setlength{\photowidth}{2.25cm}
 \setlength{\photoheight}{3cm}
 
-\hypersetup{pdftitle={\resumename 的中文简历},pdfauthor={\resumename}}
+\hypersetup{pdftitle={\resumename 的个人简历},pdfauthor={\resumename}}
 \begin{document}
 \input{texs/header_with_photo}
 \input{texs/sections}

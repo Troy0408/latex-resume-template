@@ -1,11 +1,15 @@
-% 本页为虚构示例。将院校、项目、分工、日期和验证结果换成自己的经历。
+% 本页为广东工业大学集成电路学院虚构学生示例。
+% 模板不预设求职意向，请按投递场景（校招 / 实习 / 课题组 / 学生部门）增删或调整板块顺序。
 \sectionTitle{教育背景}{\faGraduationCap}
-\datedsubsection{\textbf{示例大学} / \textit{微电子科学与工程} / \textit{学士}}{2022.09 -- 2026.06}
-\normalline{专业方向：数字集成电路设计}
-\normalline{相关课程：数字逻辑、计算机组成原理、集成电路设计基础、数字信号处理}
+% 学院专业可按实际填写：集成电路设计与集成系统、微电子科学与工程（或填写硕士/博士学历）
+\datedsubsection{\textbf{广东工业大学} / \textit{集成电路学院 · 集成电路设计与集成系统} / \textit{本科}}{2023.09 -- 2027.06}
+% 广工 GPA 满分为 5.0；若成绩不占优势，可删除 GPA 部分或仅保留专业方向
+\normalline{专业方向：数字集成电路设计 \quad GPA：4.1 / 5.0（专业前 15\%）}
+\normalline{主修课程：数字电子技术、模拟电子技术、半导体物理与器件、数字集成电路设计、EDA 技术与工具}
 
+% 校招建议保留实习经历；低年级找实习或面试校内课题组/学生部门时可删去，替换为文末「校园经历」或「科研经历」
 \sectionTitle{实习经历}{\faBriefcase}
-\datedsubsection{\textbf{示例微电子公司} / 数字验证实习生}{2025.07 -- 2025.08}
+\datedsubsection{\textbf{示例微电子公司} / 数字验证实习生}{2026.07 -- 2026.08}
 \begin{itemize}
   \item \textbf{接口测试}\quad 依据 APB 寄存器表编写读写用例，覆盖复位默认值、只读位和连续访问。
   \item \textbf{缺陷复核}\quad 从失败日志提取首个读值差异，附上地址、预期值和波形，复测修订后的 RTL。
@@ -13,7 +17,7 @@
 
 \sectionTitle{项目经历}{\faUsers}
 % 先交代设计目标与个人分工，再写设计决策、验证方法和可核对的产物。
-\datedsubsection{\textbf{单周期 RISC-V 处理器设计}}{2025.09 -- 2025.12}
+\datedsubsection{\textbf{单周期 RISC-V 处理器设计}}{2026.03 -- 2026.06}
 \role{Verilog / RV32I / Verilator}{数据通路设计与指令验证}
 \normalline{在教学处理器上实现算术、访存与条件分支指令，负责译码、写回选择和指令级自测。}
 \begin{itemize}
@@ -22,7 +26,7 @@
   \item \textbf{故障定位}\quad 从向后跳转的波形定位立即数符号扩展错误，修正后将该指令序列加入回归。
 \end{itemize}
 
-\datedsubsection{\textbf{同步 FIFO 设计与边界验证}}{2025.03 -- 2025.06}
+\datedsubsection{\textbf{同步 FIFO 设计与边界验证}}{2025.09 -- 2025.12}
 \role{SystemVerilog / GTKWave}{RTL 实现与自检平台}
 \begin{itemize}
   \item \textbf{读写控制}\quad 仅在读写被接受时更新计数器，绘制满写、空读时的接口时序图。
@@ -31,14 +35,14 @@
 
 \sectionTitle{专业技能}{\faGears}
 \begin{skilllist}
-  \item \textbf{RTL 设计}\quad 使用 Verilog / SystemVerilog 实现组合逻辑、同步状态机与寄存器数据通路。
-  \item \textbf{仿真验证}\quad 使用 Verilator 运行指令测试，通过 GTKWave 检查时钟边沿与控制信号。
-  \item \textbf{开发环境}\quad 在 Linux 下用 Make 组织仿真任务，用 Git 记录 RTL 与测试用例的版本。
+  \item \textbf{硬件设计}\quad 熟悉 Verilog / SystemVerilog，能够完成组合逻辑、同步状态机与数据通路 RTL 设计。
+  \item \textbf{仿真与工具}\quad 使用 Verilator、GTKWave 与 Vivado 开展功能仿真、波形排查及基础 FPGA 验证。
+  \item \textbf{开发与脚本}\quad 熟悉 Linux 环境，使用 Makefile、Git 与 Python 辅助组织仿真回归和日志解析。
 \end{skilllist}
 
-% 可选模块：按目标岗位决定是否保留课程设计；也可替换为实习、科研或作品。
+% 可选模块：可按投递场景保留课程设计，或替换为文末的校园经历、科研经历、技术作品
 \sectionTitle{课程设计}{\faFlask}
-\datedsubsection{\textbf{含噪信号的 FIR 低通滤波}}{2024.09 -- 2024.12}
+\datedsubsection{\textbf{含噪信号的 FIR 低通滤波}}{2025.03 -- 2025.06}
 \role{MATLAB / FIR}{滤波器设计与频域分析}
 \begin{itemize}
   \item 根据测试信号和干扰频率设置通带与阻带，比较不同阶数下的过渡带宽度与群时延。
@@ -46,13 +50,33 @@
 \end{itemize}
 
 \sectionTitle{荣誉奖项}{\faAward}
-\datedline{校级电子设计竞赛二等奖 / 数字系统设计组}{2025.05}
-\datedline{学业优秀奖学金 / 示例大学}{2024.10}
+\datedline{全国大学生集成电路创新创业大赛华南分赛区二等奖}{2026.05}
+\datedline{广东工业大学学业优秀奖学金（二等）}{2025.10}
 
-% 可选替换模块；以下均为虚构填写示例。
+% ==================== 以下为多场景可选替换模块（均属虚构示例，取消注释即可使用） ====================
+
+% --- 场景 A：面试学院学生部门 / 社团 / 校内助管（可替换「实习经历」或「课程设计」）---
+% \sectionTitle{校园经历}{\faPeopleGroup}
+% \datedsubsection{\textbf{广东工业大学集成电路学院学生会} / 学术部干事}{2024.09 -- 2025.06}
+% \begin{itemize}
+%   \item \textbf{学业帮扶}\quad 组织数字逻辑与模电期末考前答疑 4 场，整理章节重点与历年真题汇编，累计服务 200+ 人次。
+%   \item \textbf{赛事宣讲}\quad 协助筹办学院“集创赛”赛前经验分享会，完成场地预约、嘉宾对接与线上报名统计。
+% \end{itemize}
+
+% --- 场景 B：面试导师课题组 / 保研夏令营（建议放在「项目经历」之前）---
+% \sectionTitle{科研经历}{\faMicroscope}
+% \datedsubsection{\textbf{低功耗计数器的翻转活动分析} / 校内课题组}{2025.09 -- 2026.01}
+% \role{Verilog / Synopsys PrimeTime}{编码对比与功耗评估}
+% \begin{itemize}
+%   \item 在同一组输入激励下对比格雷码与二进制编码的信号翻转次数，整理测试条件与对照结果。
+%   \item 编写脚本统计关键节点翻转率变化，协助学长完成中期汇报图表与技术文档整理。
+% \end{itemize}
+
+% --- 场景 C：附带开源代码仓库或实验汇总（适用于校招 / 找实习）---
 % \sectionTitle{技术作品}{\faFolderOpen}
-% \datedsubsection{\textbf{RTL 仿真用例集}}{2025.12}
-% \normalline{整理 FIFO 与译码器的最小测试用例，附运行命令、预期输出和失败波形。}
-% \sectionTitle{科研经历}{\faFlask}
-% \datedsubsection{\textbf{低功耗计数器的翻转活动分析} / 校内课题组}{2025.03 -- 2025.06}
-% \normalline{在同一组输入激励下记录两种编码的信号翻转次数，整理测试条件与对照结果。}
+% \datedsubsection{\textbf{RTL 仿真用例集}}{2026.01}
+% \normalline{整理 FIFO 与译码器的最小测试用例，附运行命令、预期输出和失败波形，方便快速复现。}
+
+% --- 场景 D：简明个人总结（适用于信息较少时的页面补齐或跨部门转岗沟通）---
+% \sectionTitle{个人总结}{\faUser}
+% \normalline{具备扎实的数字电路与 HDL 编程基础，习惯用自动化脚本与版本控制管理实验和工程产出；沟通踏实，能够快速融入项目团队并承担明确模块的研发与文档工作。}
