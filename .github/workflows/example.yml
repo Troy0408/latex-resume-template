@@ -22,6 +22,7 @@ jobs:
         run: |
           fmtutil-sys --byfmt xelatex
           latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=resume resume-zh_CN.tex
+          latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=preview examples/preview.tex
       - name: Smoke-test photo, GitHub, and website header fields
         run: |
           mkdir -p build
@@ -37,7 +38,7 @@ jobs:
           \definecolor{fgcolor}{HTML}{2B579A}
           \definecolor{secondary}{HTML}{595959}
           \showphototrue
-          \newcommand{\photopath}{images/preview}
+          \newcommand{\photopath}{images/photo}
           \setlength{\photowidth}{2.25cm}
           \setlength{\photoheight}{3cm}
           \begin{document}
@@ -45,6 +46,7 @@ jobs:
           \input{texs/sections}
           \end{document}
           EOF
+          cp images/photo-placeholder.png images/photo.png
           latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=smoke_photo build/smoke_photo.tex
       - name: Install PDF inspection tools
         run: |
@@ -57,7 +59,15 @@ jobs:
           pdftotext -layout -enc UTF-8 build/resume.pdf build/example.txt
           grep -Fq '教育背景' build/example.txt
           grep -Fq '同步 FIFO' build/example.txt
+          grep -Fq '实习经历' build/example.txt
+          grep -Fq '荣誉奖项' build/example.txt
           grep -Fq 'lin.zhiyuan@example.com' build/example.txt
+          pdfinfo build/preview.pdf | grep -Eq '^Pages:[[:space:]]+1$'
+          for job in resume preview smoke_photo; do
+            pdfimages -list "build/$job.pdf" > "build/$job-images.txt"
+            count=$(awk '$3 == "image" { n++ } END { print n+0 }' "build/$job-images.txt")
+            if [ "$job" = resume ]; then test "$count" -eq 0; else test "$count" -eq 1; fi
+          done
           pdfinfo build/smoke_photo.pdf | grep -Eq '^Pages:[[:space:]]+1$'
           pdftotext -layout -enc UTF-8 build/smoke_photo.pdf build/smoke_photo.txt
           grep -Fq 'github.com/Troy0408' build/smoke_photo.txt

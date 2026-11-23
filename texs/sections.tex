@@ -4,22 +4,29 @@
 \normalline{专业方向：数字集成电路设计}
 \normalline{相关课程：数字逻辑、计算机组成原理、集成电路设计基础、数字信号处理}
 
+\sectionTitle{实习经历}{\faBriefcase}
+\datedsubsection{\textbf{示例微电子公司} / 数字验证实习生}{2025.07 -- 2025.08}
+\begin{itemize}
+  \item \textbf{接口测试}\quad 依据 APB 寄存器表编写读写用例，覆盖复位默认值、只读位和连续访问。
+  \item \textbf{缺陷复核}\quad 从失败日志提取首个读值差异，附上地址、预期值和波形，复测修订后的 RTL。
+\end{itemize}
+
 \sectionTitle{项目经历}{\faUsers}
 % 先交代设计目标与个人分工，再写设计决策、验证方法和可核对的产物。
 \datedsubsection{\textbf{单周期 RISC-V 处理器设计}}{2025.09 -- 2025.12}
 \role{Verilog / RV32I / Verilator}{数据通路设计与指令验证}
 \normalline{在教学处理器上实现算术、访存与条件分支指令，负责译码、写回选择和指令级自测。}
 \begin{itemize}
-  \item \textbf{数据通路}\quad 复用加法器计算访存地址，通过写回选择信号区分算术结果与加载数据；绘制控制信号表，逐项标注各类指令的寄存器读写行为。
-  \item \textbf{指令验证}\quad 编写短汇编程序，对照预期执行轨迹检查 PC、写回地址与数据，分别覆盖分支跳转和顺序执行路径。
-  \item \textbf{故障定位}\quad 用向后跳转用例复现分支目标地址错误，通过波形定位立即数符号扩展问题，修正后将该用例加入回归。
+  \item \textbf{数据通路}\quad 复用加法器计算访存地址，通过写回选择信号区分算术结果与加载数据。绘制控制信号表，逐项标注各类指令的寄存器读写行为。
+  \item \textbf{指令验证}\quad 用短汇编程序逐条比对 PC 与寄存器写回值，检查顺序执行与分支跳转。
+  \item \textbf{故障定位}\quad 从向后跳转的波形定位立即数符号扩展错误，修正后将该指令序列加入回归。
 \end{itemize}
 
 \datedsubsection{\textbf{同步 FIFO 设计与边界验证}}{2025.03 -- 2025.06}
 \role{SystemVerilog / GTKWave}{RTL 实现与自检平台}
 \begin{itemize}
-  \item \textbf{读写控制}\quad 根据有效读写操作更新计数器和空满标志；规定满时拒绝写入、空时拒绝读出，并在接口时序图中标明单周期响应。
-  \item \textbf{结果比对}\quad 用参考队列记录已接受的写入数据，逐次比对读出顺序；保留空读、满写和指针回绕的回归用例与波形。
+  \item \textbf{读写控制}\quad 仅在读写被接受时更新计数器，绘制满写、空读时的接口时序图。
+  \item \textbf{结果比对}\quad 用参考队列记录已接受的写入数据，逐次比对读出顺序。将空读、满写与指针回绕用例加入回归，保存预期波形供复核。
 \end{itemize}
 
 \sectionTitle{专业技能}{\faGears}
@@ -38,14 +45,14 @@
   \item 将输入、输出频谱置于同一坐标尺度，整理参数表和绘图脚本，供同组同学复现实验。
 \end{itemize}
 
+\sectionTitle{荣誉奖项}{\faAward}
+\datedline{校级电子设计竞赛二等奖 / 数字系统设计组}{2025.05}
+\datedline{学业优秀奖学金 / 示例大学}{2024.10}
+
+% 可选替换模块；以下均为虚构填写示例。
 % \sectionTitle{技术作品}{\faFolderOpen}
-% \datedsubsection{\textbf{作品名称}}{更新年月}
-% \normalline{说明读者能在作品中查到什么，并附上公开链接或文档路径。}
-% \sectionTitle{实习经历}{\faBuilding}
-% \datedsubsection{\textbf{单位名称} / 岗位}{起始年月 -- 结束年月}
-% \normalline{职责与交付物}
+% \datedsubsection{\textbf{RTL 仿真用例集}}{2025.12}
+% \normalline{整理 FIFO 与译码器的最小测试用例，附运行命令、预期输出和失败波形。}
 % \sectionTitle{科研经历}{\faFlask}
-% \datedsubsection{\textbf{课题名称} / 研究方向}{起始年月 -- 结束年月}
-% \normalline{研究问题、本人工作与成果}
-% \sectionTitle{荣誉奖项}{\faAward}
-% \datedline{奖项名称 / 授予单位}{获奖年月}
+% \datedsubsection{\textbf{低功耗计数器的翻转活动分析} / 校内课题组}{2025.03 -- 2025.06}
+% \normalline{在同一组输入激励下记录两种编码的信号翻转次数，整理测试条件与对照结果。}

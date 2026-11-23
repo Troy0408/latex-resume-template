@@ -5,9 +5,11 @@ all: zh_CN
 zh_CN:
 	latexmk -g -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=resume resume-zh_CN.tex
 
-preview: zh_CN
-	cp build/resume.pdf examples/resume.pdf
-	pdftoppm -singlefile -r 144 -png build/resume.pdf images/preview
+preview:
+	latexmk -g -xelatex -interaction=nonstopmode -halt-on-error -file-line-error -outdir=build -jobname=preview examples/preview.tex
+	cp build/preview.pdf examples/resume.pdf
+	pdftoppm -singlefile -r 144 -png build/preview.pdf images/preview
 
 clean:
 	latexmk -C -xelatex -outdir=build -jobname=resume resume-zh_CN.tex
+	latexmk -C -xelatex -outdir=build -jobname=preview examples/preview.tex

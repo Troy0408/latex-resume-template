@@ -1,4 +1,5 @@
 % 每个联系方式整体换行，仅在两个已填写的项目之间插入间距。
+\providecommand{\resumetarget}{}
 \providecommand{\resumephone}{}
 \providecommand{\resumeemail}{}
 \providecommand{\resumeaddress}{}
@@ -11,7 +12,10 @@
 \newcommand{\resumeidentity}{%
   \raggedright
   {\Huge\bfseries\color{fgcolor}\resumename\par}%
-  \def\nextcontactsep{\vspace{0.4em}\noindent}
+  \ifx\resumetarget\empty\else
+    \vspace{2pt}{\color{secondary}求职意向\enspace ·\enspace \resumetarget\par}%
+  \fi
+  \def\nextcontactsep{\vspace{3pt}\noindent}
   \contactfield\resumephone{\phone{\resumephone}}%
   \contactfield\resumeemail{\email{\resumeemail}}%
   \contactfield\resumeaddress{\basicInfoItem{\faLocationDot}{\resumeaddress}}%

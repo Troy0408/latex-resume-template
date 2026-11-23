@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{resume}[2026/11/22 Chinese technical resume]
+\ProvidesClass{resume}[2026/11/23 Chinese technical resume]
 \LoadClass[11pt]{article}
 
 \RequirePackage{geometry}
@@ -19,15 +19,15 @@
 \setlength{\parindent}{0pt}
 \pagestyle{empty}
 \setlist{noitemsep}
-\setlist[itemize]{topsep=0.3em,itemsep=0.24em,leftmargin=1.25pc,label=\textcolor{fgcolor}{\textbullet}}
+\setlist[itemize]{topsep=2pt,partopsep=0pt,itemsep=0.24em,leftmargin=1.25pc,label=\textcolor{fgcolor}{\textbullet}}
 
 % 上游 default：大号蓝色标题，下方一条同色通栏细线。
 \titleformat{\section}
   {\fontsize{13.5pt}{16pt}\selectfont\bfseries\raggedright\color{fgcolor}}{}{0em}{}
   [\titleline{\color{fgcolor}\titlerule}]
-\titlespacing*{\section}{0cm}{*2.6}{*1.25}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
 \titleformat{\subsection}{\large\raggedright}{}{0em}{}
-\titlespacing*{\subsection}{0cm}{*1.8}{*0.6}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
 
 \newenvironment{skilllist}{\begin{itemize}[itemsep=0.25em]}{\end{itemize}}
 \newcommand{\icon}[1]{\makebox[1em][c]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}\hspace{0.3em}}
@@ -36,7 +36,7 @@
 \newcommand{\datedline}[2]{\par #1 \hfill \mbox{\small\textcolor{secondary}{#2}}\par}
 \newcommand{\texthl}[1]{\textcolor{fgcolor}{\textbf{#1}}}
 \newcommand{\normalline}[1]{\par #1\par}
-\newcommand{\role}[2]{\par{\color{secondary}\textit{#1}\quad #2}\par\vspace{0.6ex}}
+\newcommand{\role}[2]{\par{\color{secondary}\textit{#1}\quad #2}\par\addvspace{1pt}}
 
 \newcommand{\basicInfoItem}[2]{{\normalsize\color{secondary}\icon{#1}\ #2}}
 \newcommand{\phone}[1]{\basicInfoItem{\faPhone}{#1}}
